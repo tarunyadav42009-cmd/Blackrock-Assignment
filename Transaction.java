@@ -40,7 +40,7 @@ public final class Transaction {
     public BigDecimal getAmount() { return amount; }
     public TransactionType getType() { return type; }
 
-    // Updated toString to include the Timestamp anchor
+    // Updated to the String to include the Timestamp anchor
     @Override
     public String toString() {
         return String.format("Transaction[ID=%s, Type=%s, Amount=$%s, Status=%s, Time=%s]", 
