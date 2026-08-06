@@ -11,13 +11,13 @@ public class TransactionService {
         try {
             // Create the initial pending transaction object
             Transaction tx = new Transaction(amount, type);
-            
+
             // 2. Business Logic Rule: Check if spending exceeds available funds
             if (type == Transaction.TransactionType.WITHDRAWAL || type == Transaction.TransactionType.INVESTMENT) {
                 if (amount.compareTo(accountBalance) > 0) {
                     tx.setStatus(Transaction.Status.FAILED);
                     System.out.println("Rejected! " + tx + " -> Reason: Insufficient Funds!");
-                    return; 
+                    return;
                 } else {
                     accountBalance = accountBalance.subtract(amount);
                     tx.setStatus(Transaction.Status.SUCCESS);
@@ -29,7 +29,7 @@ public class TransactionService {
 
             transactionLedger.add(tx);
             System.out.println("Processed: " + tx + " | Remaining Balance: $" + accountBalance);
-            
+
         } catch (IllegalArgumentException e) {
             System.err.println("Transaction Rejected: " + e.getMessage());
         }
@@ -39,10 +39,10 @@ public class TransactionService {
         TransactionService service = new TransactionService();
         System.out.println("Starting Bank Balance: $10000.00");
         System.out.println("------------------------------------------------");
-        
+
         // Test Case 1: Valid Investment (Should succeed)
         service.processTransaction(new BigDecimal("5000.75"), Transaction.TransactionType.INVESTMENT);
-        
+
         // Test Case 2: Insufficient Funds Withdrawal (Should fail)
         service.processTransaction(new BigDecimal("12523.23"), Transaction.TransactionType.WITHDRAWAL);
 
