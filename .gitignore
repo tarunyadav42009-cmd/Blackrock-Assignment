@@ -1,0 +1,10 @@
+# Ignore all compiled bytecode
+*.class
+
+# Ignore output folder if someone compiles with -d bin
+bin/
+out/
+
+# Ignore VS Code / IDE settings
+.vscode/
+.idea/
